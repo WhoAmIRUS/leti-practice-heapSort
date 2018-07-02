@@ -10,7 +10,7 @@ public class Node {
     }
 
     public static Node restore(int value){
-        Point position = new Point(1, 1);
+        Point position = new Point(10, 10);
         return new Node(value, position);
     }
 

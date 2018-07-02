@@ -22,10 +22,16 @@ public class Model {
     }
 
     public void sortMax(){
-        HeapSortMax.sort(new int[]{1, 2 ,3});
+        Node[] i = new HeapSortMax().sort(tree);
+        for(Node e: i){
+            System.out.println(e.getValue());
+        }
     }
 
     public void sortMin(){
-        HeapSortMin.sort(new int[]{1, 2 ,3});
+        Node[] i = new HeapSortMin().sort(tree);
+        for(Node e: i){
+            System.out.println(e.getValue());
+        }
     }
 }

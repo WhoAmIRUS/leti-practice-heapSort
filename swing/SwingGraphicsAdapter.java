@@ -30,6 +30,7 @@ public class SwingGraphicsAdapter implements Graphics{
     public void drawText(int x, int y, String text, int rgb) {
         char[] symbols = text.toCharArray();
         graphics.setColor(new Color(rgb));
+        graphics.setFont(new Font("Serif", Font.BOLD, 11));
         graphics.drawChars(symbols, 0, symbols.length, x, y);
     }
 }
