@@ -23,7 +23,11 @@ public class Controller {
         view.draw();
     }
 
-    public void restart(){
+    public void nextStep(){
+
+    }
+
+    public void refresh(){
         new ProjectLauncher().initScanner();
         view.draw();
     }

@@ -1,26 +1,21 @@
 package com.etu.heapsort.view;
 
-public class View {
+import java.awt.*;
+
+public class View{
+
+    private Graphics graphics;
+
     public void draw(){
-        drawButtonMax();
-        drawButtonMin();
-        drawButtonRestart();
         drawTree();
     }
-
-    private void drawButtonMax(){
-
-    }
-
-    private void drawButtonMin(){
-
-    }
-
-    private void drawButtonRestart(){
-
-    }
-
     private void drawTree(){
+        graphics.drawOval(1, 1, 50, 50, java.awt.Color.GREEN.getRGB());
+        graphics.drawLine(1, 1, 100, 100, java.awt.Color.RED.getRGB());
+        graphics.drawText(1, 1, "lol", java.awt.Color.RED.getRGB());
+    }
 
+    public void setGraphics(Graphics graphics) {
+        this.graphics = graphics;
     }
 }

@@ -15,6 +15,7 @@ abstract class HeapSort {
     abstract void heapify(int[] nodes, int currentNode);
 
     static void sort(int[] nodes){
+        System.out.println("lalka");
         //TODO алгоритм сортировки массива используя bildHeap and heapify
     }
 }
