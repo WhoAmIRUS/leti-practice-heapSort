@@ -1,6 +1,7 @@
 package com.etu.heapsort.model;
 
 abstract class HeapSort {
+    int i;
     /**
      * Изначальное построение дерева
      * @param nodes - массив значений вершин дерева
