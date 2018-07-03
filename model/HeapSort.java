@@ -8,25 +8,27 @@ abstract class HeapSort extends Thread{
      */
     int heapSize;
     private Node[] tree;
+    private boolean isAutomaticSort;
 
-    HeapSort(Node[] tree){
+    HeapSort(Node[] tree, boolean isAutomaticSort){
         this.tree = tree;
+        this.isAutomaticSort = isAutomaticSort;
     }
 
     public void run(){
-        try {
-            this.tree = sort(tree);
-        } catch (InterruptedException e){
-            System.out.println("Error");
-        }
+        this.tree = sort(tree);
         for(Node e: tree){
             System.out.println(e.getValue());
         }
     }
 
-    private synchronized Node[] sort(Node[] nodes) throws InterruptedException{
-        wait();
+    private synchronized Node[] sort(Node[] nodes){
+        checkedWait();
         buildHeap(nodes);
+        for(Node e: nodes){
+            System.out.println(e.getValue());
+        }
+        checkedWait();
         while (heapSize > 1) {
             swap(nodes, 0, heapSize - 1);
             heapSize--;
@@ -78,5 +80,13 @@ abstract class HeapSort extends Thread{
 
     synchronized void nextStep(){
         notifyAll();
+    }
+
+    private void checkedWait(){
+        try {
+            if (!isAutomaticSort) wait();
+        } catch (InterruptedException e){
+            System.out.println("Error");
+        }
     }
 }

@@ -2,8 +2,8 @@ package com.etu.heapsort.model;
 
 public class HeapSortMin extends HeapSort {
 
-    public HeapSortMin(Node[] tree){
-        super(tree);
+    public HeapSortMin(Node[] tree, boolean isAutomaticSort){
+        super(tree, isAutomaticSort);
     }
 
     @Override

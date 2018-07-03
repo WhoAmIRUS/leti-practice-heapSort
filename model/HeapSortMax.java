@@ -2,8 +2,8 @@ package com.etu.heapsort.model;
 
 public class HeapSortMax extends HeapSort {
 
-    public HeapSortMax(Node[] tree){
-        super(tree);
+    public HeapSortMax(Node[] tree, boolean isAutomaticSort){
+        super(tree, isAutomaticSort);
     }
 
     @Override

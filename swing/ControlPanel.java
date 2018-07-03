@@ -3,39 +3,51 @@ package com.etu.heapsort.swing;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class ControlPanel extends JPanel {
+class ControlPanel extends JPanel {
     private final JButton refresh = createButton("refresh", 0, 10, 50, 30);
     private final JButton sortMax = createButton("sort from min to max", 60, 10, 190, 30);
     private final JButton sortMin = createButton("sort from max to min", 250, 10, 190, 30);
     private final JButton nextStep = createButton("next", 450, 10, 50, 30);
+    private final JCheckBox checkBox = createCheckBox("Automatic sort", 510, 10, 190, 30);
 
-    public ControlPanel() {
-        add(refresh);
+    ControlPanel() {
+        //add(refresh);
         add(sortMax);
         add(sortMin);
         add(nextStep);
+        add(checkBox);
     }
 
-    public void addSortMaxButtonListener(ActionListener listener){
+    void addSortMaxButtonListener(ActionListener listener){
         sortMax.addActionListener(listener);
     }
 
-    public void addSortMinButtonListener(ActionListener listener){
+    void addSortMinButtonListener(ActionListener listener){
         sortMin.addActionListener(listener);
     }
 
-    public void addNextStepButtonListener(ActionListener listener){
+    void addNextStepButtonListener(ActionListener listener){
         nextStep.addActionListener(listener);
     }
 
-    public void addRefreshButtonListener(ActionListener listener){
+    void addRefreshButtonListener(ActionListener listener){
         refresh.addActionListener(listener);
+    }
+
+    void addCheckBoxListener(ActionListener listener){
+        checkBox.addActionListener(listener);
     }
 
     private JButton createButton(String text, int x, int y, int width, int height){
         JButton button = new JButton(text);
         button.setBounds(x, y, width, height);
         return button;
+    }
+
+    private JCheckBox createCheckBox(String text, int x, int y, int width, int height){
+        JCheckBox checkBox = new JCheckBox(text);
+        checkBox.setBounds(x, y, width, height);
+        return checkBox;
     }
 }
 

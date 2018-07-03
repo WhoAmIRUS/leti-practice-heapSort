@@ -28,7 +28,11 @@ public class Controller {
     }
 
     public void refresh(){
-        new ProjectLauncher().initScanner();
+        ProjectLauncher.initScanner();
         view.draw();
+    }
+
+    public void automaticSort(){
+        model.isAutomaticSort = !model.isAutomaticSort;
     }
 }

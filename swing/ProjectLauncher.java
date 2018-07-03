@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ProjectLauncher extends JFrame {
 
-    public Scanner scanner;
+    private static Scanner scanner;
     private final Component canvas;
     private final ControlPanel controls;
 
@@ -19,7 +19,7 @@ public class ProjectLauncher extends JFrame {
         SwingUtilities.invokeLater(() -> new ProjectLauncher().setVisible(true));
     }
 
-    public void initScanner(){
+    public static void initScanner(){
         scanner = new Scanner(ProjectLauncher.class.getResourceAsStream("./../input.dat"));
     }
 
@@ -66,5 +66,6 @@ public class ProjectLauncher extends JFrame {
         controls.addSortMinButtonListener(e -> controller.sortMin());
         controls.addNextStepButtonListener(e -> controller.nextStep());
         controls.addRefreshButtonListener(e -> controller.refresh());
+        controls.addCheckBoxListener(e -> controller.automaticSort());
     }
 }
