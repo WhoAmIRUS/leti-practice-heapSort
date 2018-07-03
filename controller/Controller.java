@@ -5,7 +5,7 @@ import com.etu.heapsort.view.View;
 import com.etu.heapsort.swing.ProjectLauncher;
 
 public class Controller {
-    private final Model model;
+    private Model model;
     private final View view;
 
     public Controller(Model model, View view){
@@ -14,11 +14,17 @@ public class Controller {
     }
 
     public void sortMax(){
+        if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
+            this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
+        }
         model.sortMax();
         view.draw();
     }
 
     public void sortMin(){
+        if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
+            this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
+        }
         model.sortMin();
         view.draw();
     }
@@ -33,6 +39,14 @@ public class Controller {
     }
 
     public void automaticSort(){
-        model.isAutomaticSort = !model.isAutomaticSort;
+        Model.isAutomaticSort = !Model.isAutomaticSort;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public static void changeAnswer(String answer){
+        ProjectLauncher.getControls().getLabel().setText("Answer: " + answer);
     }
 }

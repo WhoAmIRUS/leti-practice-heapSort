@@ -3,19 +3,23 @@ package com.etu.heapsort.swing;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-class ControlPanel extends JPanel {
+public class ControlPanel extends JPanel {
+    private final JTextField textField = createTextField("", 0, 10, 190, 30);
     private final JButton refresh = createButton("refresh", 0, 10, 50, 30);
     private final JButton sortMax = createButton("sort from min to max", 60, 10, 190, 30);
     private final JButton sortMin = createButton("sort from max to min", 250, 10, 190, 30);
     private final JButton nextStep = createButton("next", 450, 10, 50, 30);
     private final JCheckBox checkBox = createCheckBox("Automatic sort", 510, 10, 190, 30);
+    private final JLabel answer = createLabel("", 510, 10, 500, 30);
 
     ControlPanel() {
+        add(textField);
         //add(refresh);
         add(sortMax);
         add(sortMin);
         add(nextStep);
         add(checkBox);
+        add(answer);
     }
 
     void addSortMaxButtonListener(ActionListener listener){
@@ -48,6 +52,26 @@ class ControlPanel extends JPanel {
         JCheckBox checkBox = new JCheckBox(text);
         checkBox.setBounds(x, y, width, height);
         return checkBox;
+    }
+
+    private JTextField createTextField(String text, int x, int y, int width, int height){
+        JTextField textField = new JTextField(text, 20);
+        textField.setBounds(x, y, width, height);
+        return textField;
+    }
+
+    private JLabel createLabel(String text, int x, int y, int width, int height){
+        JLabel label = new JLabel(text);
+        label.setBounds(x, y, width, height);
+        return label;
+    }
+
+    public JTextField getTextField(){
+        return textField;
+    }
+
+    public JLabel getLabel(){
+        return answer;
     }
 }
 

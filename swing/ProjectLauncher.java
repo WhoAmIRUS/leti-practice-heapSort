@@ -13,7 +13,7 @@ public class ProjectLauncher extends JFrame {
 
     private static Scanner scanner;
     private final Component canvas;
-    private final ControlPanel controls;
+    private static final ControlPanel controls = new ControlPanel();
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new ProjectLauncher().setVisible(true));
@@ -28,14 +28,13 @@ public class ProjectLauncher extends JFrame {
      */
     public ProjectLauncher(){
         canvas = new JPanel();
-        canvas.setPreferredSize(new Dimension(700, 600));
+        canvas.setPreferredSize(new Dimension(900, 600));
 
-        controls = new ControlPanel();
-        controls.setPreferredSize(new Dimension(700, 50));
+        controls.setPreferredSize(new Dimension(900, 80));
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
-        rootPanel.setPreferredSize(new Dimension(700, 650));
+        rootPanel.setPreferredSize(new Dimension(900, 680));
 
         rootPanel.add(controls, BorderLayout.NORTH);
         rootPanel.add(canvas, BorderLayout.CENTER);
@@ -67,5 +66,9 @@ public class ProjectLauncher extends JFrame {
         controls.addNextStepButtonListener(e -> controller.nextStep());
         controls.addRefreshButtonListener(e -> controller.refresh());
         controls.addCheckBoxListener(e -> controller.automaticSort());
+    }
+
+    public static ControlPanel getControls() {
+        return controls;
     }
 }

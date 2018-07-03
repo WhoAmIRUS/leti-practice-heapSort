@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Model {
     private Node[] tree;
     private HeapSort heapSort;
-    public boolean isAutomaticSort = false;
+    public static boolean isAutomaticSort;
 
     private Model(Node[] tree) {
         this.tree = tree;
@@ -42,5 +42,14 @@ public class Model {
     public void nextStep(){
         if (heapSort != null) heapSort.nextStep();
         //heapSort = null;
+    }
+
+    public Model reedFromTextField(String text){
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i=0; i<text.length(); i++){
+            if (text.charAt(i) == ' ') continue;
+            list.add(text.charAt(i) - '0');
+        }
+        return restore(list);
     }
 }
