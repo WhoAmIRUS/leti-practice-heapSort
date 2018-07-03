@@ -24,7 +24,7 @@ public class Controller {
     }
 
     public void nextStep(){
-
+        model.nextStep();
     }
 
     public void refresh(){

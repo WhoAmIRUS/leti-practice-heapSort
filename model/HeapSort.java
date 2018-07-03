@@ -1,14 +1,31 @@
 package com.etu.heapsort.model;
 
-abstract class HeapSort {
+abstract class HeapSort extends Thread{
     /**
      * Изначальное построение дерева
+     *
      * @param nodes - массив значений вершин дерева
      */
     int heapSize;
+    private Node[] tree;
 
-    Node[] sort(Node[] nodes){
-        //TODO алгоритм сортировки массива используя bildHeap and heapify
+    HeapSort(Node[] tree){
+        this.tree = tree;
+    }
+
+    public void run(){
+        try {
+            this.tree = sort(tree);
+        } catch (InterruptedException e){
+            System.out.println("Error");
+        }
+        for(Node e: tree){
+            System.out.println(e.getValue());
+        }
+    }
+
+    private synchronized Node[] sort(Node[] nodes) throws InterruptedException{
+        wait();
         buildHeap(nodes);
         while (heapSize > 1) {
             swap(nodes, 0, heapSize - 1);
@@ -18,7 +35,7 @@ abstract class HeapSort {
         return nodes;
     }
 
-    void buildHeap(Node[] nodes){
+    void buildHeap(Node[] nodes) {
         heapSize = nodes.length;
         for (int i = nodes.length / 2; i >= 0; i--) {
             heapify(nodes, i);
@@ -47,7 +64,8 @@ abstract class HeapSort {
 
     /**
      * Построение дерева так, чтобы потомки текущей вершины были больше(меньше) родителя
-     * @param nodes - массив значений вершин дерева
+     *
+     * @param nodes       - массив значений вершин дерева
      * @param currentNode - текущая рассматриваемая вершина
      */
     abstract void heapify(Node[] nodes, int currentNode);
@@ -56,5 +74,9 @@ abstract class HeapSort {
         Node temp = nodes[i];
         nodes[i] = nodes[j];
         nodes[j] = temp;
+    }
+
+    synchronized void nextStep(){
+        notifyAll();
     }
 }

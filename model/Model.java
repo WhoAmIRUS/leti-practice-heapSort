@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Model {
     private Node[] tree;
+    HeapSort heapSort;
 
     private Model(Node[] tree) {
         this.tree = tree;
@@ -22,16 +23,16 @@ public class Model {
     }
 
     public void sortMax(){
-        Node[] i = new HeapSortMax().sort(tree);
-        for(Node e: i){
-            System.out.println(e.getValue());
-        }
+        heapSort = new HeapSortMax(tree);
+        heapSort.start();
     }
 
     public void sortMin(){
-        Node[] i = new HeapSortMin().sort(tree);
-        for(Node e: i){
-            System.out.println(e.getValue());
-        }
+        heapSort = new HeapSortMin(tree);
+        heapSort.start();
+    }
+
+    public void nextStep(){
+        heapSort.nextStep();
     }
 }

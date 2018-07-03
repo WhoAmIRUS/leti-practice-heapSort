@@ -1,6 +1,11 @@
 package com.etu.heapsort.model;
 
 public class HeapSortMax extends HeapSort {
+
+    public HeapSortMax(Node[] tree){
+        super(tree);
+    }
+
     @Override
     void heapify(Node[] nodes, int currentNode) {
         int left = left(currentNode);
