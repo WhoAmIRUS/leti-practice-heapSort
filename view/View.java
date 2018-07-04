@@ -1,5 +1,7 @@
 package com.etu.heapsort.view;
 
+import model.Node;
+
 public class View{
 
     private Graphics graphics;
