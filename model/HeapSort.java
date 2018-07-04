@@ -2,18 +2,18 @@ package com.etu.heapsort.model;
 
 import com.etu.heapsort.controller.Controller;
 
-abstract class HeapSort extends Thread{
+abstract class HeapSort{
     /**
      * Изначальное построение дерева
      *
      * @param nodes - массив значений вершин дерева
      */
     int heapSize;
-    private Node[] tree;
+    private Tree tree;
     private boolean isAutomaticSort;
     public static String answer;
 
-    HeapSort(Node[] tree, boolean isAutomaticSort){
+    HeapSort(Tree tree, boolean isAutomaticSort){
         this.tree = tree;
         this.isAutomaticSort = isAutomaticSort;
     }
@@ -21,34 +21,35 @@ abstract class HeapSort extends Thread{
     public void run(){
         this.tree = sort(tree);
         answer = "";
-        for(Node e: tree){
+        for(Node e: tree.getTree()){
             System.out.println(e.getValue());
             answer = answer + " " + e.getValue();
         }
-        Controller.changeAnswer(answer);
+        this.tree.setExplain(answer);
+        Model.addTree((Tree)tree.clone());
     }
 
-    private synchronized Node[] sort(Node[] nodes){
-        Controller.changeExplain("Start first part of sort");
-        checkedWait();
+    private Tree sort(Tree nodes){
+        nodes.setExplain("Start first part of sort");
+        Model.addTree((Tree)nodes.clone());
         buildHeap(nodes);
-        Controller.changeExplain("Start second part of sort");
-        checkedWait();
+        nodes.setExplain("Start second part of sort");
+        Model.addTree((Tree)nodes.clone());
         while (heapSize > 1) {
-            Controller.changeExplain("Swap " + 0 + " and " + (heapSize - 1) + " elements");
-            checkedWait();
-            swap(nodes, 0, heapSize - 1);
+            nodes.setExplain("Swap " + 0 + " and " + (heapSize - 1) + " elements");
+            Model.addTree((Tree)nodes.clone());
+            swap(nodes.getTree(), 0, heapSize - 1);
             heapSize--;
-            Controller.changeExplain("Start heapify");
-            checkedWait();
+            nodes.setExplain("Start heapify");
+            Model.addTree((Tree)nodes.clone());
             heapify(nodes, 0);
         }
         return nodes;
     }
 
-    void buildHeap(Node[] nodes) {
-        heapSize = nodes.length;
-        for (int i = nodes.length / 2; i >= 0; i--) {
+    void buildHeap(Tree nodes) {
+        heapSize = nodes.getTree().length;
+        for (int i = nodes.getTree().length / 2; i >= 0; i--) {
             heapify(nodes, i);
         }
     }
@@ -79,7 +80,7 @@ abstract class HeapSort extends Thread{
      * @param nodes       - массив значений вершин дерева
      * @param currentNode - текущая рассматриваемая вершина
      */
-    abstract void heapify(Node[] nodes, int currentNode);
+    abstract void heapify(Tree nodes, int currentNode);
 
     void swap(Node[] nodes, int i, int j) {
         int temp = nodes[i].getValue();
@@ -99,7 +100,6 @@ abstract class HeapSort extends Thread{
             } else {
                 //Thread.sleep(300);
             }
-            //TODO Thread.sleep when isAutomaticSort == true
         } catch (InterruptedException e){
             System.out.println("Error");
         }

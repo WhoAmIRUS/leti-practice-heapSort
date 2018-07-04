@@ -36,12 +36,12 @@ public class Controller {
 
     public void draw(){
         ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
-        view.draw(model.getTree());
+        //view.draw(model.getTree());
     }
 
     public void refresh(){
         ProjectLauncher.initScanner();
-        view.draw(model.getTree());
+        //view.draw(model.getTree());
     }
 
     public void automaticSort(){
