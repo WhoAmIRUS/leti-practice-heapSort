@@ -1,7 +1,5 @@
 package com.etu.heapsort.view;
 
-import java.awt.*;
-
 public class View{
 
     private Graphics graphics;

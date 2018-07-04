@@ -15,6 +15,7 @@ public class ProjectLauncher extends JFrame {
     private final Component canvas;
     private static final ControlPanel controls = new ControlPanel();
 
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new ProjectLauncher().setVisible(true));
     }
@@ -28,13 +29,13 @@ public class ProjectLauncher extends JFrame {
      */
     public ProjectLauncher(){
         canvas = new JPanel();
-        canvas.setPreferredSize(new Dimension(900, 600));
+        canvas.setPreferredSize(new Dimension(850, 600));
 
-        controls.setPreferredSize(new Dimension(900, 80));
+        controls.setPreferredSize(new Dimension(850, 80));
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
-        rootPanel.setPreferredSize(new Dimension(900, 680));
+        rootPanel.setPreferredSize(new Dimension(850, 680));
 
         rootPanel.add(controls, BorderLayout.NORTH);
         rootPanel.add(canvas, BorderLayout.CENTER);

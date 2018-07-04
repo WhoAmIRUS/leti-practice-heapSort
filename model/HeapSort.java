@@ -29,15 +29,18 @@ abstract class HeapSort extends Thread{
     }
 
     private synchronized Node[] sort(Node[] nodes){
+        Controller.changeExplain("Start first part of sort");
         checkedWait();
         buildHeap(nodes);
-        for(Node e: nodes){
-            System.out.println(e.getValue());
-        }
+        Controller.changeExplain("Start second part of sort");
         checkedWait();
         while (heapSize > 1) {
+            Controller.changeExplain("Swap " + 0 + " and " + (heapSize - 1) + " elements");
+            checkedWait();
             swap(nodes, 0, heapSize - 1);
             heapSize--;
+            Controller.changeExplain("Start heapify");
+            checkedWait();
             heapify(nodes, 0);
         }
         return nodes;
@@ -88,9 +91,11 @@ abstract class HeapSort extends Thread{
         notifyAll();
     }
 
-    private void checkedWait(){
+
+    void checkedWait(){
         try {
             if (!isAutomaticSort) wait();
+            //TODO Thread.sleep when isAutomaticSort == true
         } catch (InterruptedException e){
             System.out.println("Error");
         }

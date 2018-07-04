@@ -49,4 +49,8 @@ public class Controller {
     public static void changeAnswer(String answer){
         ProjectLauncher.getControls().getLabel().setText("Answer: " + answer);
     }
+
+    public static void changeExplain(String explain){
+        ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
+    }
 }
