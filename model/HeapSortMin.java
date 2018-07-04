@@ -1,5 +1,7 @@
 package com.etu.heapsort.model;
 
+import com.etu.heapsort.controller.Controller;
+
 public class HeapSortMin extends HeapSort {
 
     public HeapSortMin(Node[] tree, boolean isAutomaticSort){
@@ -18,6 +20,8 @@ public class HeapSortMin extends HeapSort {
             largest = right;
         }
         if (currentNode != largest) {
+            Controller.changeExplain("Swap " + currentNode + " and " + largest + " elements");
+            checkedWait();
             swap(nodes, currentNode, largest);
             heapify(nodes, largest);
         }

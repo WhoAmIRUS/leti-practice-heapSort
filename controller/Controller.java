@@ -18,7 +18,7 @@ public class Controller {
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
         model.sortMax();
-        view.draw(model.getTree());
+        draw();
     }
 
     public void sortMin(){
@@ -26,11 +26,15 @@ public class Controller {
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
         model.sortMin();
-        view.draw(model.getTree());
+        draw();
     }
 
     public void nextStep(){
         model.nextStep();
+        draw();
+    }
+
+    public void draw(){
         ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
         view.draw(model.getTree());
     }

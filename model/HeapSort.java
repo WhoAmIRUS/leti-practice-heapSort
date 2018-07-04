@@ -94,7 +94,11 @@ abstract class HeapSort extends Thread{
 
     void checkedWait(){
         try {
-            if (!isAutomaticSort) wait();
+            if (!isAutomaticSort) {
+                wait();
+            } else {
+                //Thread.sleep(300);
+            }
             //TODO Thread.sleep when isAutomaticSort == true
         } catch (InterruptedException e){
             System.out.println("Error");
