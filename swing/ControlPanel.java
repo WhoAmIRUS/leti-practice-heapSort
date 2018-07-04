@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class ControlPanel extends JPanel {
+    private final JLabel enter = createLabel("Enter array:", 0, 10, 190,30);
     private final JTextField textField = createTextField("", 0, 10, 190, 30);
     private final JButton refresh = createButton("refresh", 0, 10, 50, 30);
     private final JButton sortMax = createButton("sort from min to max", 60, 10, 190, 30);
@@ -13,6 +14,7 @@ public class ControlPanel extends JPanel {
     private final JLabel answer = createLabel("", 510, 10, 500, 30);
 
     ControlPanel() {
+        add(enter);
         add(textField);
         //add(refresh);
         add(sortMax);
