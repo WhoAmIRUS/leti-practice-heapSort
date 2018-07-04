@@ -17,7 +17,7 @@ public class SwingGraphicsAdapter implements Graphics{
     @Override
     public void drawOval(int x, int y, int width, int height, int rgb) {
         graphics.setColor(new Color(rgb));
-        graphics.fillOval(y, x, width, height);
+       graphics.fillOval(x, y, width, height);
     }
 
     @Override
