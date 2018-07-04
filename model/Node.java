@@ -9,12 +9,12 @@ public class Node {
         this.position = position;
     }
 
-    static Node restore(int value){
-        Point position = new Point(10, 10);
+    static Node restore(int value, int x, int y){
+        Point position = new Point(x,y);
         return new Node(value, position);
     }
 
-    int getValue() {
+    public int getValue() {
         return value;
     }
 
