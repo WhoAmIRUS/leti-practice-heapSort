@@ -1,6 +1,6 @@
 package com.etu.heapsort.view;
 
-import model.Node;
+import com.etu.heapsort.model.Node;
 
 public class View{
 
