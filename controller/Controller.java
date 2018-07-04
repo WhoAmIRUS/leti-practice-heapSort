@@ -18,7 +18,7 @@ public class Controller {
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
         model.sortMax();
-        view.draw();
+        view.draw(model.getTree());
     }
 
     public void sortMin(){
@@ -26,7 +26,7 @@ public class Controller {
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
         model.sortMin();
-        view.draw();
+        view.draw(model.getTree());
     }
 
     public void nextStep(){
@@ -35,7 +35,7 @@ public class Controller {
 
     public void refresh(){
         ProjectLauncher.initScanner();
-        view.draw();
+        view.draw(model.getTree());
     }
 
     public void automaticSort(){
@@ -48,9 +48,5 @@ public class Controller {
 
     public static void changeAnswer(String answer){
         ProjectLauncher.getControls().getLabel().setText("Answer: " + answer);
-    }
-
-    public static void changeExplain(String explain){
-        ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
     }
 }
