@@ -31,6 +31,7 @@ public class Controller {
 
     public void nextStep(){
         model.nextStep();
+        ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
         view.draw(model.getTree());
     }
 
@@ -50,7 +51,8 @@ public class Controller {
     public static void changeAnswer(String answer){
         ProjectLauncher.getControls().getLabel().setText("Answer: " + answer);
     }
-     public static void changeExplain(String explain){
-         ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
-     }
+
+    public static void changeExplain(String explain){
+        ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
+    }
 }

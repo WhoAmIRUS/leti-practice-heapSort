@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ProjectLauncher extends JFrame {
 
     private static Scanner scanner;
-    private final Component canvas;
+    private static final Component canvas = new JPanel();
     private static final ControlPanel controls = new ControlPanel();
 
 
@@ -28,7 +28,6 @@ public class ProjectLauncher extends JFrame {
      * Отрисовывыет холст
      */
     public ProjectLauncher(){
-        canvas = new JPanel();
         canvas.setPreferredSize(new Dimension(800, 600));
 
         controls.setPreferredSize(new Dimension(800, 80));
@@ -71,5 +70,9 @@ public class ProjectLauncher extends JFrame {
 
     public static ControlPanel getControls() {
         return controls;
+    }
+
+    public static Component getCanvas() {
+        return canvas;
     }
 }

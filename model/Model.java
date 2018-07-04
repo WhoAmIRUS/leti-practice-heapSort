@@ -93,9 +93,8 @@ public class Model {
 
     public Model reedFromTextField(String text){
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i=0; i<text.length(); i++){
-            if (text.charAt(i) == ' ') continue;
-            list.add(text.charAt(i) - '0');
+        for (String i : text.split(" ")){
+            list.add(Integer.parseInt(i));
         }
         return restore(list);
     }
