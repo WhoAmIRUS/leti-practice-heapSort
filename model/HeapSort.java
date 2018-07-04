@@ -82,9 +82,9 @@ abstract class HeapSort extends Thread{
     abstract void heapify(Node[] nodes, int currentNode);
 
     void swap(Node[] nodes, int i, int j) {
-        Node temp = nodes[i];
-        nodes[i] = nodes[j];
-        nodes[j] = temp;
+        int temp = nodes[i].getValue();
+        nodes[i].setValue(nodes[j].getValue());
+        nodes[j].setValue(temp);
     }
 
     synchronized void nextStep(){

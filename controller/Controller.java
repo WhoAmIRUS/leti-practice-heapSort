@@ -31,6 +31,7 @@ public class Controller {
 
     public void nextStep(){
         model.nextStep();
+        view.draw(model.getTree());
     }
 
     public void refresh(){
