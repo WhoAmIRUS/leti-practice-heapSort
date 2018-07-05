@@ -1,7 +1,6 @@
 package swing;
 
-import view.Graphics;
-import javax.swing.*;
+import com.etu.heapsort.view.Graphics;
 import java.awt.*;
 
 public class SwingGraphicsAdapter implements Graphics{

@@ -1,8 +1,9 @@
 package swing;
 
-import controller.Controller;
-import model.Model;
-import view.View;
+import com.etu.heapsort.controller.Controller;
+import com.etu.heapsort.model.Model;
+import com.etu.heapsort.view.ProgressBar;
+import com.etu.heapsort.view.View;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ public class ProjectLauncher extends JFrame {
     private static Scanner scanner;
     private static final Component canvas = new JPanel();
     private static final ControlPanel controls = new ControlPanel();
+    private static final ProgressBar progressBar = new ProgressBar();
 
 
     public static void main(String[] args) {
@@ -29,15 +31,16 @@ public class ProjectLauncher extends JFrame {
      */
     public ProjectLauncher(){
         canvas.setPreferredSize(new Dimension(800, 600));
-
         controls.setPreferredSize(new Dimension(800, 80));
+        progressBar.setPreferredSize(new Dimension(800, 50));
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
-        rootPanel.setPreferredSize(new Dimension(800, 680));
+        rootPanel.setPreferredSize(new Dimension(800, 730));
 
         rootPanel.add(controls, BorderLayout.NORTH);
         rootPanel.add(canvas, BorderLayout.CENTER);
+        rootPanel.add(progressBar, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setContentPane(rootPanel);
@@ -74,5 +77,9 @@ public class ProjectLauncher extends JFrame {
 
     public static Component getCanvas() {
         return canvas;
+    }
+
+    public static ProgressBar getProgressBar() {
+        return progressBar;
     }
 }

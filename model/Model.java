@@ -18,12 +18,12 @@ public class Model {
 
 
     public void sortMax(){
-        heapSort = new HeapSortMax(tree);
+        heapSort = new HeapSortMax(new Tree(tree));
         heapSort.run();
     }
 
     public void sortMin(){
-        heapSort = new HeapSortMin(tree);
+        heapSort = new HeapSortMin(new Tree(tree));
         heapSort.run();
     }
 

@@ -1,9 +1,9 @@
 package controller;
 
-import model.Model;
-import swing.SwingGraphicsAdapter;
-import view.View;
-import swing.ProjectLauncher;
+import com.etu.heapsort.model.Model;
+import com.etu.heapsort.swing.SwingGraphicsAdapter;
+import com.etu.heapsort.view.View;
+import com.etu.heapsort.swing.ProjectLauncher;
 
 public class Controller{
     private Model model;
@@ -18,6 +18,8 @@ public class Controller{
         if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
+        Model.clearListOfTrees();
+        ProjectLauncher.getProgressBar().clear();
         model.sortMax();
         restartView();
     }
@@ -26,12 +28,10 @@ public class Controller{
         if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
+        Model.clearListOfTrees();
+        ProjectLauncher.getProgressBar().clear();
         model.sortMin();
         restartView();
-    }
-
-    public void previousStep(){
-        this.view.previousStep();
     }
 
     public void nextStep(){
@@ -41,13 +41,9 @@ public class Controller{
     public void automaticSort(){
         View.isAutomaticSort = !View.isAutomaticSort;
     }
-
+  
     public Model getModel() {
         return model;
-    }
-
-    public static void changeAnswer(String answer){
-        ProjectLauncher.getControls().getLabel().setText("Answer: " + answer);
     }
 
     private void restartView(){

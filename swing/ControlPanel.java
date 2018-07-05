@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class ControlPanel extends JPanel {
     private final JLabel enter = createLabel("Enter array:", 0, 10, 190,30);
     private final JTextField textField = createTextField("", 0, 10, 190, 30);
-    private final JButton refresh = createButton("refresh", 0, 10, 50, 30);
     private final JButton sortMax = createButton("sort from min to max", 60, 10, 190, 30);
     private final JButton sortMin = createButton("sort from max to min", 250, 10, 190, 30);
     private final JButton previousStep = createButton("previous",350,10, 50,30);
@@ -17,7 +16,6 @@ public class ControlPanel extends JPanel {
     ControlPanel() {
         add(enter);
         add(textField);
-        //add(refresh);
         add(sortMax);
         add(sortMin);
         add(previousStep);
@@ -36,11 +34,8 @@ public class ControlPanel extends JPanel {
 
     void addPreviousStepButtonListener(ActionListener listener) { previousStep.addActionListener(listener); }
 
-    void addNextStepButtonListener(ActionListener listener){ nextStep.addActionListener(listener);
-    }
-
-    void addRefreshButtonListener(ActionListener listener){
-        refresh.addActionListener(listener);
+    void addNextStepButtonListener(ActionListener listener){
+        nextStep.addActionListener(listener);
     }
 
     void addCheckBoxListener(ActionListener listener){

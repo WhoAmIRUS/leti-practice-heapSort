@@ -2,6 +2,8 @@ package model;
 
 import controller.Controller;
 
+import com.etu.heapsort.controller.Controller;
+
 public class HeapSortMin extends HeapSort {
 
     public HeapSortMin(Tree tree){

@@ -2,6 +2,8 @@ package model;
 
 import controller.Controller;
 
+import com.etu.heapsort.controller.Controller;
+
 public class HeapSortMax extends HeapSort {
 
     public HeapSortMax(Tree tree){
