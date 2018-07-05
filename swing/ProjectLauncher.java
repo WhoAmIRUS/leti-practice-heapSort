@@ -1,4 +1,4 @@
-package com.etu.heapsort.swing;
+package swing;
 
 import com.etu.heapsort.controller.Controller;
 import com.etu.heapsort.model.Model;
@@ -66,6 +66,7 @@ public class ProjectLauncher extends JFrame {
 
         controls.addSortMaxButtonListener(e -> controller.sortMax());
         controls.addSortMinButtonListener(e -> controller.sortMin());
+        controls.addPreviousStepButtonListener(e -> controller.previousStep());
         controls.addNextStepButtonListener(e -> controller.nextStep());
         controls.addCheckBoxListener(e -> controller.automaticSort());
     }

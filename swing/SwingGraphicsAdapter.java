@@ -1,4 +1,4 @@
-package com.etu.heapsort.swing;
+package swing;
 
 import com.etu.heapsort.view.Graphics;
 import java.awt.*;
@@ -13,6 +13,8 @@ public class SwingGraphicsAdapter implements Graphics{
 
     @Override
     public void drawOval(int x, int y, int width, int height, int rgb) {
+        graphics.setColor(Color.black);
+        graphics.fillOval(x - 2, y - 2, width + 4,height + 4);
         graphics.setColor(new Color(rgb));
         graphics.fillOval(x, y, width, height);
     }
@@ -27,7 +29,7 @@ public class SwingGraphicsAdapter implements Graphics{
     public void drawText(int x, int y, String text, int rgb) {
         char[] symbols = text.toCharArray();
         graphics.setColor(new Color(rgb));
-        graphics.setFont(new Font("Serif", Font.BOLD, 11));
+        graphics.setFont(new Font("Serif", Font.BOLD, 15));
         graphics.drawChars(symbols, 0, symbols.length, x, y);
     }
 }

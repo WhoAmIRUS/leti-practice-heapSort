@@ -1,8 +1,9 @@
-package com.etu.heapsort.model;
+package model;
 
 public class Node  implements Cloneable{
     private int value;
     private Point position;
+    private boolean color = false;
 
     private Node(int value, Point position) {
         this.value = value;
@@ -25,6 +26,10 @@ public class Node  implements Cloneable{
     public void setValue(int value) {
         this.value = value;
     }
+
+    public boolean getClr () { return color; }
+
+    public void setClr (boolean color) { this.color = color; }
 
     @Override
     public Node clone(){

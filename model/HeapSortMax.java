@@ -1,4 +1,6 @@
-package com.etu.heapsort.model;
+package model;
+
+import controller.Controller;
 
 import com.etu.heapsort.controller.Controller;
 
@@ -21,6 +23,7 @@ public class HeapSortMax extends HeapSort {
         }
         if (currentNode != largest) {
             nodes.setExplain("Swap " + currentNode + " and " + largest + " elements");
+            changecolor(nodes.getTree(),currentNode,largest,true);
             Model.addTree(new Tree(nodes));
             swap(nodes.getTree(), currentNode, largest);
             heapify(nodes, largest);

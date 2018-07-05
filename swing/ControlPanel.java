@@ -1,4 +1,4 @@
-package com.etu.heapsort.swing;
+package swing;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -8,6 +8,7 @@ public class ControlPanel extends JPanel {
     private final JTextField textField = createTextField("", 0, 10, 190, 30);
     private final JButton sortMax = createButton("sort from min to max", 60, 10, 190, 30);
     private final JButton sortMin = createButton("sort from max to min", 250, 10, 190, 30);
+    private final JButton previousStep = createButton("previous",350,10, 50,30);
     private final JButton nextStep = createButton("next", 450, 10, 50, 30);
     private final JCheckBox checkBox = createCheckBox("Automatic sort", 510, 10, 190, 30);
     private final JLabel answer = createLabel("", 510, 10, 500, 30);
@@ -17,6 +18,7 @@ public class ControlPanel extends JPanel {
         add(textField);
         add(sortMax);
         add(sortMin);
+        add(previousStep);
         add(nextStep);
         add(checkBox);
         add(answer);
@@ -29,6 +31,8 @@ public class ControlPanel extends JPanel {
     void addSortMinButtonListener(ActionListener listener){
         sortMin.addActionListener(listener);
     }
+
+    void addPreviousStepButtonListener(ActionListener listener) { previousStep.addActionListener(listener); }
 
     void addNextStepButtonListener(ActionListener listener){
         nextStep.addActionListener(listener);

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Tree  implements Cloneable{
     private Node[] tree;
     private String explain;
-    private final static int step_x = 6, step_y = 40;
+    private final static int step_x = 10, step_y = 50;
 
     private Tree(Node[] tree){
         this.tree = tree;
@@ -21,7 +21,7 @@ public class Tree  implements Cloneable{
 
     public static Tree restore(ArrayList<Integer> buffer){
         Node[] tree = new Node[buffer.size()];
-        int x_root = 450, y_root = 10, i = 0;
+        int x_root = 400, y_root = 50, i = 0;
         int level = heightheap(buffer.size());
         tree[i] = Node.restore(buffer.get(i),x_root,y_root);
         if (i*2+2 < buffer.size()){

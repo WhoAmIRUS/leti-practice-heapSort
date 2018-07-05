@@ -1,4 +1,4 @@
-package com.etu.heapsort.model;
+package model;
 
 abstract class HeapSort{
     /**
@@ -32,6 +32,7 @@ abstract class HeapSort{
         Model.addTree(new Tree(nodes));
         while (heapSize > 1) {
             nodes.setExplain("Swap " + 0 + " and " + (heapSize - 1) + " elements");
+            changecolor(nodes.getTree(),0,heapSize - 1, true);
             Model.addTree(new Tree(nodes));
             swap(nodes.getTree(), 0, heapSize - 1);
             heapSize--;
@@ -77,9 +78,15 @@ abstract class HeapSort{
      */
     abstract void heapify(Tree nodes, int currentNode);
 
+    void changecolor(Node[] nodes, int i, int j, boolean flag){
+        nodes[i].setClr(flag);
+        nodes[j].setClr(flag);
+    }
+
     void swap(Node[] nodes, int i, int j) {
         int temp = nodes[i].getValue();
         nodes[i].setValue(nodes[j].getValue());
         nodes[j].setValue(temp);
+        changecolor(nodes,i,j,false);
     }
 }

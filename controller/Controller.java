@@ -1,4 +1,4 @@
-package com.etu.heapsort.controller;
+package controller;
 
 import com.etu.heapsort.model.Model;
 import com.etu.heapsort.swing.SwingGraphicsAdapter;
@@ -41,7 +41,7 @@ public class Controller{
     public void automaticSort(){
         View.isAutomaticSort = !View.isAutomaticSort;
     }
-
+  
     public Model getModel() {
         return model;
     }

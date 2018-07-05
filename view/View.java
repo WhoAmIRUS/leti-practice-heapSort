@@ -1,5 +1,6 @@
-package com.etu.heapsort.view;
+package view;
 
+import java.awt.*;
 import com.etu.heapsort.model.Model;
 import com.etu.heapsort.model.Tree;
 import com.etu.heapsort.model.Node;
@@ -32,17 +33,26 @@ public class View extends Thread{
                 ProjectLauncher.getProgressBar().setCurrentSlide(i + 1);
             }
         }
+        Model.clearListOfTrees();
     }
     private void drawTree(Node[] tree) {
         for (int i = 0; i < tree.length; i++) {
+            int x = tree[i].getPosition().getX();
+            int y = tree[i].getPosition().getY();
+            Color oval;
+            if (tree[i].getClr()){
+                oval = Color.red;
+            } else {
+                oval = Color.white;
+            }
             if (2*i + 1 < tree.length){
-                graphics.drawLine(tree[i].getPosition().getX(), tree[i].getPosition().getY(),tree[2*i + 1].getPosition().getX(),tree[2*i + 1].getPosition().getY(),java.awt.Color.RED.getRGB());
+                graphics.drawLine(x, y,tree[2*i + 1].getPosition().getX(),tree[2*i + 1].getPosition().getY(),Color.black.getRGB());
             }
             if (2*i + 2 < tree.length) {
-                graphics.drawLine(tree[i].getPosition().getX(), tree[i].getPosition().getY(),tree[2*i + 2].getPosition().getX(),tree[2*i + 2].getPosition().getY(), java.awt.Color.RED.getRGB());
+                graphics.drawLine(x, y,tree[2*i + 2].getPosition().getX(),tree[2*i + 2].getPosition().getY(), Color.black.getRGB());
             }
-            graphics.drawOval(tree[i].getPosition().getX() - 7, tree[i].getPosition().getY() - 7 , 14, 14, java.awt.Color.GREEN.getRGB());
-            graphics.drawText(tree[i].getPosition().getX()-2, tree[i].getPosition().getY()+2, String.valueOf(tree[i].getValue()), java.awt.Color.RED.getRGB());
+            graphics.drawOval(x - 15, y - 15, 30, 30, oval.getRGB());
+            graphics.drawText(x - 3, y + 4, String.valueOf(tree[i].getValue()), Color.black.getRGB());           
         }
     }
 
@@ -62,6 +72,8 @@ public class View extends Thread{
         }
     }
 
+    public synchronized void previousStep(){
+    }
     public synchronized void nextStep(){
         notifyAll();
     }
