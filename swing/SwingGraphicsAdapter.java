@@ -1,6 +1,6 @@
-package com.etu.heapsort.swing;
+package heapsort.swing;
 
-import com.etu.heapsort.view.Graphics;
+import heapsort.view.Graphics;
 import java.awt.*;
 
 public class SwingGraphicsAdapter implements Graphics{
@@ -11,7 +11,6 @@ public class SwingGraphicsAdapter implements Graphics{
         this.graphics = graphics;
     }
 
-    @Override
     public void drawOval(int x, int y, int width, int height, int rgb) {
         graphics.setColor(Color.black);
         graphics.fillOval(x - 2, y - 2, width + 4,height + 4);
@@ -19,13 +18,11 @@ public class SwingGraphicsAdapter implements Graphics{
         graphics.fillOval(x, y, width, height);
     }
 
-    @Override
     public void drawLine(int x1, int y1, int x2, int y2, int rgb){
         graphics.setColor(new Color(rgb));
         graphics.drawLine(x1, y1, x2, y2);
     }
 
-    @Override
     public void drawText(int x, int y, String text, int rgb) {
         char[] symbols = text.toCharArray();
         graphics.setColor(new Color(rgb));

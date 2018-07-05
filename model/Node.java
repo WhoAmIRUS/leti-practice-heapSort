@@ -1,4 +1,4 @@
-package com.etu.heapsort.model;
+package heapsort.model;
 
 public class Node  implements Cloneable{
     private int value;

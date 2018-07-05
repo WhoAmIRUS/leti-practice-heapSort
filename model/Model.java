@@ -1,11 +1,11 @@
-package com.etu.heapsort.model;
+package heapsort.model;
 
 import java.util.ArrayList;
 
 public class Model {
     private HeapSort heapSort;
     private Tree tree;
-    private static ArrayList<Tree> ListOfTrees = new ArrayList<>();
+    private static ArrayList<Tree> ListOfTrees = new ArrayList<Tree>();
 
     private Model(Tree tree) {
         this.tree = tree;
@@ -28,7 +28,7 @@ public class Model {
     }
 
     public Model reedFromTextField(String text){
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
         for (String i : text.split(" ")){
             list.add(Integer.parseInt(i));
         }

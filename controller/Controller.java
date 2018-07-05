@@ -1,9 +1,9 @@
-package com.etu.heapsort.controller;
+package heapsort.controller;
 
-import com.etu.heapsort.model.Model;
-import com.etu.heapsort.swing.SwingGraphicsAdapter;
-import com.etu.heapsort.view.View;
-import com.etu.heapsort.swing.ProjectLauncher;
+import heapsort.model.Model;
+import heapsort.swing.SwingGraphicsAdapter;
+import heapsort.view.View;
+import heapsort.swing.ProjectLauncher;
 
 public class Controller{
     private Model model;
@@ -15,9 +15,7 @@ public class Controller{
     }
 
     public void sortMax(){
-        if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
-            this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
-        }
+        checkTextField();
         Model.clearListOfTrees();
         ProjectLauncher.getProgressBar().clear();
         model.sortMax();
@@ -25,9 +23,7 @@ public class Controller{
     }
 
     public void sortMin(){
-        if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
-            this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
-        }
+        checkTextField();
         Model.clearListOfTrees();
         ProjectLauncher.getProgressBar().clear();
         model.sortMin();
@@ -55,5 +51,11 @@ public class Controller{
         this.view = new View();
         this.view.setGraphics(new SwingGraphicsAdapter(ProjectLauncher.getCanvas().getGraphics()));
         this.view.start();
+    }
+
+    private void checkTextField(){
+        if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
+            this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
+        }
     }
 }

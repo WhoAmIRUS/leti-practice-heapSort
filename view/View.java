@@ -1,10 +1,10 @@
-package com.etu.heapsort.view;
+package heapsort.view;
 
 import java.awt.*;
-import com.etu.heapsort.model.Model;
-import com.etu.heapsort.model.Tree;
-import com.etu.heapsort.model.Node;
-import com.etu.heapsort.swing.ProjectLauncher;
+import heapsort.model.Model;
+import heapsort.model.Tree;
+import heapsort.model.Node;
+import heapsort.swing.ProjectLauncher;
 
 import java.util.ArrayList;
 

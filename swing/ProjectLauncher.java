@@ -1,18 +1,20 @@
-package com.etu.heapsort.swing;
+package heapsort.swing;
 
-import com.etu.heapsort.controller.Controller;
-import com.etu.heapsort.model.Model;
-import com.etu.heapsort.view.ProgressBar;
-import com.etu.heapsort.view.View;
+import heapsort.controller.Controller;
+import heapsort.model.Model;
+import heapsort.view.ProgressBar;
+import heapsort.view.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProjectLauncher extends JFrame {
 
     private static Scanner scanner;
+    private static BufferedReader br;
     private static final Component canvas = new JPanel();
     private static final ControlPanel controls = new ControlPanel();
     private static final ProgressBar progressBar = new ProgressBar();
@@ -23,7 +25,11 @@ public class ProjectLauncher extends JFrame {
     }
 
     public static void initScanner(){
-        scanner = new Scanner(ProjectLauncher.class.getResourceAsStream("./../input.dat"));
+        try {
+            br = new BufferedReader(new FileReader("./../input.dat"));
+        } catch (Exception e){
+
+        }
     }
 
     /**
@@ -53,11 +59,18 @@ public class ProjectLauncher extends JFrame {
      * Ставит слушателей на кнопки
      */
     private void initListeners() {
-        initScanner();
         ArrayList<Integer> buffer = new ArrayList<>();
-        while(scanner.hasNextInt()){
-            buffer.add(scanner.nextInt());
-        }
+        /*try{
+            initScanner();
+            int line = Integer.parseInt(br.readLine());
+            while(line != 0){
+                buffer.add(line);
+                line = Integer.parseInt(br.readLine());
+            }
+        } catch (Exception e){
+
+        }*/
+        buffer.add(0);
         Model model = Model.restore(buffer);
         View view = new View();
         view.setGraphics(new SwingGraphicsAdapter(canvas.getGraphics()));

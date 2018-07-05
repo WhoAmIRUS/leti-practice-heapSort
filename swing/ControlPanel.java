@@ -1,4 +1,4 @@
-package com.etu.heapsort.swing;
+package heapsort.swing;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

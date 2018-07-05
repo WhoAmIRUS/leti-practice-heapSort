@@ -1,4 +1,4 @@
-package com.etu.heapsort.model;
+package heapsort.model;
 
 public class HeapSortMax extends HeapSort {
 
