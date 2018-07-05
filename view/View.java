@@ -1,13 +1,26 @@
 package com.etu.heapsort.view;
 
+import com.etu.heapsort.model.Tree;
 import com.etu.heapsort.model.Node;
+import com.etu.heapsort.swing.ProjectLauncher;
 
-public class View{
+import java.util.ArrayList;
+
+public class View extends Thread{
 
     private Graphics graphics;
 
-    public void draw(Node[] tree){
-        drawTree(tree);
+    public synchronized void draw(ArrayList<Tree> ListOfTrees){
+        for (int i=0; i<ListOfTrees.size(); i++){
+            drawTree(ListOfTrees.get(i).getTree());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e){
+
+            }
+            changeExplain(ListOfTrees.get(i).getExplain());
+            checkedWait();
+        }
     }
     private void drawTree(Node[] tree) {
         for (int i = 0; i < tree.length; i++) {
@@ -22,7 +35,27 @@ public class View{
         }
     }
 
+    public static void changeExplain(String explain){
+        ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
+    }
+
     public void setGraphics(Graphics graphics) {
         this.graphics = graphics;
+    }
+
+    void checkedWait(){
+        try {
+            //if (!isAutomaticSort) {
+                wait();
+            //} else {
+                //Thread.sleep(300);
+            //}
+        } catch (InterruptedException e){
+            System.out.println("Error");
+        }
+    }
+
+    public void nextStep(){
+        notifyAll();
     }
 }

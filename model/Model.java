@@ -54,4 +54,8 @@ public class Model {
     public static void clearListOfTrees(){
         ListOfTrees.clear();
     }
+
+    public static ArrayList<Tree> getListOfTrees() {
+        return ListOfTrees;
+    }
 }

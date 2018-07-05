@@ -21,7 +21,7 @@ public class HeapSortMin extends HeapSort {
         }
         if (currentNode != largest) {
             nodes.setExplain("Swap " + currentNode + " and " + largest + " elements");
-            Model.addTree((Tree)nodes.clone());
+            Model.addTree(new Tree(nodes));
             swap(nodes.getTree(), currentNode, largest);
             heapify(nodes, largest);
         }

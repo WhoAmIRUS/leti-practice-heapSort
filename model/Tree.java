@@ -11,6 +11,14 @@ public class Tree  implements Cloneable{
         this.tree = tree;
     }
 
+    public Tree(Tree other) {
+        this.tree = new Node[other.getTree().length];
+        for (int i=0; i<other.getTree().length; i++){
+            this.tree[i] = other.getTree()[i].clone();
+        }
+        setExplain(other.getExplain());
+    }
+
     public static Tree restore(ArrayList<Integer> buffer){
         Node[] tree = new Node[buffer.size()];
         int x_root = 450, y_root = 10, i = 0;
@@ -61,9 +69,10 @@ public class Tree  implements Cloneable{
         return index;
     }
 
-    protected Object clone(){
+    @Override
+    public Tree clone(){
         try {
-            return super.clone();
+            return (Tree)super.clone();
         } catch (CloneNotSupportedException e){
             System.out.println("Error");
             return null;
@@ -73,6 +82,10 @@ public class Tree  implements Cloneable{
 
     public Node[] getTree() {
         return tree;
+    }
+
+    public String getExplain() {
+        return explain;
     }
 
     public void setExplain(String explain) {

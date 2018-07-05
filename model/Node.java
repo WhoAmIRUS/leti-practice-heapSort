@@ -1,6 +1,6 @@
 package com.etu.heapsort.model;
 
-public class Node {
+public class Node  implements Cloneable{
     private int value;
     private Point position;
 
@@ -24,5 +24,16 @@ public class Node {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public Node clone(){
+        try {
+            return (Node)super.clone();
+        } catch (CloneNotSupportedException e){
+            System.out.println("Error");
+            return null;
+        }
+
     }
 }

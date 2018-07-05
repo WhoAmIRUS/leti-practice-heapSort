@@ -26,22 +26,22 @@ abstract class HeapSort{
             answer = answer + " " + e.getValue();
         }
         this.tree.setExplain(answer);
-        Model.addTree((Tree)tree.clone());
+        Model.addTree(new Tree(tree));
     }
 
     private Tree sort(Tree nodes){
         nodes.setExplain("Start first part of sort");
-        Model.addTree((Tree)nodes.clone());
+        Model.addTree(new Tree(nodes));
         buildHeap(nodes);
         nodes.setExplain("Start second part of sort");
-        Model.addTree((Tree)nodes.clone());
+        Model.addTree(new Tree(nodes));
         while (heapSize > 1) {
             nodes.setExplain("Swap " + 0 + " and " + (heapSize - 1) + " elements");
-            Model.addTree((Tree)nodes.clone());
+            Model.addTree(new Tree(nodes));
             swap(nodes.getTree(), 0, heapSize - 1);
             heapSize--;
             nodes.setExplain("Start heapify");
-            Model.addTree((Tree)nodes.clone());
+            Model.addTree(new Tree(nodes));
             heapify(nodes, 0);
         }
         return nodes;
@@ -90,18 +90,5 @@ abstract class HeapSort{
 
     synchronized void nextStep(){
         notifyAll();
-    }
-
-
-    void checkedWait(){
-        try {
-            if (!isAutomaticSort) {
-                wait();
-            } else {
-                //Thread.sleep(300);
-            }
-        } catch (InterruptedException e){
-            System.out.println("Error");
-        }
     }
 }
