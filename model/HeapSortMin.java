@@ -4,8 +4,8 @@ import com.etu.heapsort.controller.Controller;
 
 public class HeapSortMin extends HeapSort {
 
-    public HeapSortMin(Tree tree, boolean isAutomaticSort){
-        super(tree, isAutomaticSort);
+    public HeapSortMin(Tree tree){
+        super(tree);
     }
 
     @Override

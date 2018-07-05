@@ -13,11 +13,6 @@ public class View extends Thread{
     public synchronized void draw(ArrayList<Tree> ListOfTrees){
         for (int i=0; i<ListOfTrees.size(); i++){
             drawTree(ListOfTrees.get(i).getTree());
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e){
-
-            }
             changeExplain(ListOfTrees.get(i).getExplain());
             checkedWait();
         }

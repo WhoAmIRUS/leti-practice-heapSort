@@ -1,7 +1,5 @@
 package com.etu.heapsort.model;
 
-import com.etu.heapsort.controller.Controller;
-
 abstract class HeapSort{
     /**
      * Изначальное построение дерева
@@ -10,12 +8,10 @@ abstract class HeapSort{
      */
     int heapSize;
     private Tree tree;
-    private boolean isAutomaticSort;
     public static String answer;
 
-    HeapSort(Tree tree, boolean isAutomaticSort){
+    HeapSort(Tree tree){
         this.tree = tree;
-        this.isAutomaticSort = isAutomaticSort;
     }
 
     public void run(){
@@ -86,9 +82,5 @@ abstract class HeapSort{
         int temp = nodes[i].getValue();
         nodes[i].setValue(nodes[j].getValue());
         nodes[j].setValue(temp);
-    }
-
-    synchronized void nextStep(){
-        notifyAll();
     }
 }

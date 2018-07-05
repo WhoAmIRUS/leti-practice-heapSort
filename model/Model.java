@@ -22,7 +22,7 @@ public class Model {
         if (heapSort != null){
             heapSort = null;
         }
-        heapSort = new HeapSortMax(tree, isAutomaticSort);
+        heapSort = new HeapSortMax(tree);
         heapSort.run();
     }
 
@@ -30,13 +30,8 @@ public class Model {
         if (heapSort != null){
             heapSort = null;
         }
-        heapSort = new HeapSortMin(tree, isAutomaticSort);
+        heapSort = new HeapSortMin(tree);
         heapSort.run();
-    }
-
-    public void nextStep(){
-        if (heapSort != null) heapSort.nextStep();
-        //heapSort = null;
     }
 
     public Model reedFromTextField(String text){
