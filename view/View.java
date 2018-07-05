@@ -12,6 +12,7 @@ public class View extends Thread{
 
     private Graphics graphics;
     public static boolean isAutomaticSort = false;
+    private int currentSlide;
 
     public void run(){
         draw(Model.getListOfTrees());
@@ -19,21 +20,20 @@ public class View extends Thread{
 
     public synchronized void draw(ArrayList<Tree> ListOfTrees){
         ProjectLauncher.getProgressBar().setCountOfSlides(ListOfTrees.size());
-        for (int i=0; i<ListOfTrees.size(); i++){
+        for (currentSlide=0; currentSlide<ListOfTrees.size(); currentSlide++){
             ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
-            drawTree(ListOfTrees.get(i).getTree());
-            changeExplain(ListOfTrees.get(i).getExplain());
+            drawTree(ListOfTrees.get(currentSlide).getTree());
+            changeExplain(ListOfTrees.get(currentSlide).getExplain());
             ProjectLauncher.getProgressBar().increaseCurrentSlide();
             if (!isAutomaticSort) checkedWait();
             else{
-                i = ListOfTrees.size() - 1;
+                currentSlide = ListOfTrees.size() - 1;
                 ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
-                drawTree(ListOfTrees.get(i).getTree());
-                changeExplain(ListOfTrees.get(i).getExplain());
-                ProjectLauncher.getProgressBar().setCurrentSlide(i + 1);
+                drawTree(ListOfTrees.get(currentSlide).getTree());
+                changeExplain(ListOfTrees.get(currentSlide).getExplain());
+                ProjectLauncher.getProgressBar().setCurrentSlide(currentSlide + 1);
             }
         }
-        Model.clearListOfTrees();
     }
     private void drawTree(Node[] tree) {
         for (int i = 0; i < tree.length; i++) {
@@ -56,7 +56,7 @@ public class View extends Thread{
         }
     }
 
-    public static void changeExplain(String explain){
+    private static void changeExplain(String explain){
         ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
     }
 
@@ -64,7 +64,7 @@ public class View extends Thread{
         this.graphics = graphics;
     }
 
-    void checkedWait(){
+    private void checkedWait(){
         try {
              wait();
         } catch (InterruptedException e){
@@ -73,6 +73,11 @@ public class View extends Thread{
     }
 
     public synchronized void previousStep(){
+        if (currentSlide - 1 >= 0){
+            currentSlide -= 2;
+            ProjectLauncher.getProgressBar().setCurrentSlide(currentSlide + 1);
+            notifyAll();
+        }
     }
     public synchronized void nextStep(){
         notifyAll();

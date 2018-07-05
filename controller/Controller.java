@@ -39,7 +39,7 @@ public class Controller{
     }
 
     public void previousStep(){
-
+        view.previousStep();
     }
 
     public void automaticSort(){

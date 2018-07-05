@@ -3,8 +3,8 @@ package com.etu.heapsort.view;
 import javax.swing.*;
 
 public class ProgressBar extends JPanel {
-    private int currentSlide;
-    private int countOfSlides;
+    private int currentSlide = 0;
+    private int countOfSlides = 0;
     private JLabel label = new JLabel();
 
     public ProgressBar(){
@@ -13,6 +13,11 @@ public class ProgressBar extends JPanel {
 
     void increaseCurrentSlide(){
         this.currentSlide += 1;
+        printText();
+    }
+
+    void decreaseCurrentSlide(){
+        this.currentSlide -= 1;
         printText();
     }
 
