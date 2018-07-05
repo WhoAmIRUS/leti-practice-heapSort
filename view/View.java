@@ -17,19 +17,21 @@ public class View extends Thread{
     }
 
     public synchronized void draw(ArrayList<Tree> ListOfTrees){
+        ProjectLauncher.getProgressBar().setCountOfSlides(ListOfTrees.size());
         for (int i=0; i<ListOfTrees.size(); i++){
             ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
             drawTree(ListOfTrees.get(i).getTree());
             changeExplain(ListOfTrees.get(i).getExplain());
+            ProjectLauncher.getProgressBar().increaseCurrentSlide();
             if (!isAutomaticSort) checkedWait();
             else{
                 i = ListOfTrees.size() - 1;
                 ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
                 drawTree(ListOfTrees.get(i).getTree());
                 changeExplain(ListOfTrees.get(i).getExplain());
+                ProjectLauncher.getProgressBar().setCurrentSlide(i + 1);
             }
         }
-        Model.clearListOfTrees();
     }
     private void drawTree(Node[] tree) {
         for (int i = 0; i < tree.length; i++) {

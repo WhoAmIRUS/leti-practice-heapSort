@@ -18,6 +18,8 @@ public class Controller{
         if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
+        Model.clearListOfTrees();
+        ProjectLauncher.getProgressBar().clear();
         model.sortMax();
         restartView();
     }
@@ -26,6 +28,8 @@ public class Controller{
         if (ProjectLauncher.getControls().getTextField().getText().length() != 0){
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
+        Model.clearListOfTrees();
+        ProjectLauncher.getProgressBar().clear();
         model.sortMin();
         restartView();
     }
@@ -40,10 +44,6 @@ public class Controller{
 
     public Model getModel() {
         return model;
-    }
-
-    public static void changeAnswer(String answer){
-        ProjectLauncher.getControls().getLabel().setText("Answer: " + answer);
     }
 
     private void restartView(){
