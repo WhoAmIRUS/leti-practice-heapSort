@@ -1,4 +1,4 @@
-package model;
+package com.etu.heapsort.model;
 
 import java.util.ArrayList;
 

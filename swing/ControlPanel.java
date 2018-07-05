@@ -1,4 +1,4 @@
-package swing;
+package com.etu.heapsort.swing;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

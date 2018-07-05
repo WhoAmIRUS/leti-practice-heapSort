@@ -1,4 +1,4 @@
-package controller;
+package com.etu.heapsort.controller;
 
 import com.etu.heapsort.model.Model;
 import com.etu.heapsort.swing.SwingGraphicsAdapter;
@@ -36,6 +36,10 @@ public class Controller{
 
     public void nextStep(){
         this.view.nextStep();
+    }
+
+    public void previousStep(){
+
     }
 
     public void automaticSort(){

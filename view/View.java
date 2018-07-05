@@ -1,4 +1,4 @@
-package view;
+package com.etu.heapsort.view;
 
 import java.awt.*;
 import com.etu.heapsort.model.Model;

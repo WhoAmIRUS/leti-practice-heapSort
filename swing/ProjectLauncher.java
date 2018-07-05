@@ -1,4 +1,4 @@
-package swing;
+package com.etu.heapsort.swing;
 
 import com.etu.heapsort.controller.Controller;
 import com.etu.heapsort.model.Model;
@@ -30,13 +30,13 @@ public class ProjectLauncher extends JFrame {
      * Отрисовывыет холст
      */
     public ProjectLauncher(){
-        canvas.setPreferredSize(new Dimension(800, 600));
-        controls.setPreferredSize(new Dimension(800, 80));
-        progressBar.setPreferredSize(new Dimension(800, 50));
+        canvas.setPreferredSize(new Dimension(900, 600));
+        controls.setPreferredSize(new Dimension(900, 80));
+        progressBar.setPreferredSize(new Dimension(900, 50));
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
-        rootPanel.setPreferredSize(new Dimension(800, 730));
+        rootPanel.setPreferredSize(new Dimension(900, 730));
 
         rootPanel.add(controls, BorderLayout.NORTH);
         rootPanel.add(canvas, BorderLayout.CENTER);
