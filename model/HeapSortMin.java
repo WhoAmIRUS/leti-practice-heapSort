@@ -1,13 +1,30 @@
-package com.etu.heapsort.model;
+package model;
+
+import controller.Controller;
 
 public class HeapSortMin extends HeapSort {
-    @Override
-    void buildHeap(int[] nodes) {
 
+    public HeapSortMin(Tree tree){
+        super(tree);
     }
 
     @Override
-    void heapify(int[] nodes, int currentNode) {
-
+    void heapify(Tree nodes, int currentNode) {
+        int left = left(currentNode);
+        int right = right(currentNode);
+        int largest = currentNode;
+        if (left < heapSize && nodes.getTree()[currentNode].getValue() > nodes.getTree()[left].getValue()) {
+            largest = left;
+        }
+        if (right < heapSize && nodes.getTree()[largest].getValue() > nodes.getTree()[right].getValue()) {
+            largest = right;
+        }
+        if (currentNode != largest) {
+            nodes.setExplain("Swap " + currentNode + " and " + largest + " elements");
+            changecolor(nodes.getTree(),currentNode,largest,true);
+            Model.addTree(new Tree(nodes));
+            swap(nodes.getTree(), currentNode, largest);
+            heapify(nodes, largest);
+        }
     }
 }

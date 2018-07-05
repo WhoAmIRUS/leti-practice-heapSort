@@ -1,8 +1,8 @@
-package com.etu.heapsort.swing;
+package swing;
 
-import com.etu.heapsort.controller.Controller;
-import com.etu.heapsort.model.Model;
-import com.etu.heapsort.view.View;
+import controller.Controller;
+import model.Model;
+import view.View;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,15 +11,16 @@ import java.util.Scanner;
 
 public class ProjectLauncher extends JFrame {
 
-    public Scanner scanner;
-    private final Component canvas;
-    private final ControlPanel controls;
+    private static Scanner scanner;
+    private static final Component canvas = new JPanel();
+    private static final ControlPanel controls = new ControlPanel();
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new ProjectLauncher().setVisible(true));
     }
 
-    public void initScanner(){
+    public static void initScanner(){
         scanner = new Scanner(ProjectLauncher.class.getResourceAsStream("./../input.dat"));
     }
 
@@ -27,15 +28,13 @@ public class ProjectLauncher extends JFrame {
      * Отрисовывыет холст
      */
     public ProjectLauncher(){
-        canvas = new JPanel();
-        canvas.setPreferredSize(new Dimension(700, 600));
+        canvas.setPreferredSize(new Dimension(800, 600));
 
-        controls = new ControlPanel();
-        controls.setPreferredSize(new Dimension(700, 50));
+        controls.setPreferredSize(new Dimension(800, 80));
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
-        rootPanel.setPreferredSize(new Dimension(700, 650));
+        rootPanel.setPreferredSize(new Dimension(800, 680));
 
         rootPanel.add(controls, BorderLayout.NORTH);
         rootPanel.add(canvas, BorderLayout.CENTER);
@@ -58,13 +57,22 @@ public class ProjectLauncher extends JFrame {
         }
         Model model = Model.restore(buffer);
         View view = new View();
-        view.setGraphics(new SwingGraphicsAdapter(this, canvas.getGraphics()));
+        view.setGraphics(new SwingGraphicsAdapter(canvas.getGraphics()));
 
         Controller controller = new Controller(model, view);
 
         controls.addSortMaxButtonListener(e -> controller.sortMax());
         controls.addSortMinButtonListener(e -> controller.sortMin());
+        controls.addPreviousStepButtonListener(e -> controller.previousStep());
         controls.addNextStepButtonListener(e -> controller.nextStep());
-        controls.addRefreshButtonListener(e -> controller.refresh());
+        controls.addCheckBoxListener(e -> controller.automaticSort());
+    }
+
+    public static ControlPanel getControls() {
+        return controls;
+    }
+
+    public static Component getCanvas() {
+        return canvas;
     }
 }

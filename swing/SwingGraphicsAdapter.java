@@ -1,23 +1,23 @@
-package com.etu.heapsort.swing;
+package swing;
 
-import com.etu.heapsort.view.Graphics;
+import view.Graphics;
 import javax.swing.*;
 import java.awt.*;
 
 public class SwingGraphicsAdapter implements Graphics{
 
-    private final JFrame mainFrame;
     private final java.awt.Graphics graphics;
 
-    public SwingGraphicsAdapter(JFrame mainFrame, java.awt.Graphics graphics) {
-        this.mainFrame = mainFrame;
+    public SwingGraphicsAdapter(java.awt.Graphics graphics) {
         this.graphics = graphics;
     }
 
     @Override
     public void drawOval(int x, int y, int width, int height, int rgb) {
+        graphics.setColor(Color.black);
+        graphics.fillOval(x - 2, y - 2, width + 4,height + 4);
         graphics.setColor(new Color(rgb));
-        graphics.fillOval(y, x, width, height);
+        graphics.fillOval(x, y, width, height);
     }
 
     @Override
@@ -30,6 +30,7 @@ public class SwingGraphicsAdapter implements Graphics{
     public void drawText(int x, int y, String text, int rgb) {
         char[] symbols = text.toCharArray();
         graphics.setColor(new Color(rgb));
+        graphics.setFont(new Font("Serif", Font.BOLD, 15));
         graphics.drawChars(symbols, 0, symbols.length, x, y);
     }
 }

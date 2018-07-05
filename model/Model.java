@@ -1,31 +1,49 @@
-package com.etu.heapsort.model;
+package model;
 
 import java.util.ArrayList;
 
 public class Model {
-    private Node[] tree;
+    private HeapSort heapSort;
+    private Tree tree;
+    private static ArrayList<Tree> ListOfTrees = new ArrayList<>();
 
-    private Model(Node[] tree) {
+    private Model(Tree tree) {
         this.tree = tree;
     }
-
+    
+    
     public static Model restore(ArrayList<Integer> buffer){
-        Node[] tree = new Node[buffer.size()];
-        for (int i=0; i<buffer.size(); i++){
-            tree[i] = Node.restore(buffer.get(i));
-        }
-        return new Model(tree);
+        return new Model(Tree.restore(buffer));
     }
 
-    public Node[] getTree() {
-        return tree;
-    }
 
     public void sortMax(){
-        HeapSortMax.sort(new int[]{1, 2 ,3});
+        heapSort = new HeapSortMax(tree);
+        heapSort.run();
     }
 
     public void sortMin(){
-        HeapSortMin.sort(new int[]{1, 2 ,3});
+        heapSort = new HeapSortMin(tree);
+        heapSort.run();
+    }
+
+    public Model reedFromTextField(String text){
+        ArrayList<Integer> list = new ArrayList<>();
+        for (String i : text.split(" ")){
+            list.add(Integer.parseInt(i));
+        }
+        return restore(list);
+    }
+
+    public static void addTree(Tree tree){
+        ListOfTrees.add(tree);
+    }
+
+    public static void clearListOfTrees(){
+        ListOfTrees.clear();
+    }
+
+    public static ArrayList<Tree> getListOfTrees() {
+        return ListOfTrees;
     }
 }
