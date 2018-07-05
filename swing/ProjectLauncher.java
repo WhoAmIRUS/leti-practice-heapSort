@@ -57,14 +57,13 @@ public class ProjectLauncher extends JFrame {
         }
         Model model = Model.restore(buffer);
         View view = new View();
-        view.setGraphics(new SwingGraphicsAdapter(this, canvas.getGraphics()));
+        view.setGraphics(new SwingGraphicsAdapter(canvas.getGraphics()));
 
         Controller controller = new Controller(model, view);
 
         controls.addSortMaxButtonListener(e -> controller.sortMax());
         controls.addSortMinButtonListener(e -> controller.sortMin());
         controls.addNextStepButtonListener(e -> controller.nextStep());
-        controls.addRefreshButtonListener(e -> controller.refresh());
         controls.addCheckBoxListener(e -> controller.automaticSort());
     }
 

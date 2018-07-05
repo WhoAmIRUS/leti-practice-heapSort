@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Model {
     private HeapSort heapSort;
     private Tree tree;
-    public static boolean isAutomaticSort;
     private static ArrayList<Tree> ListOfTrees = new ArrayList<>();
 
     private Model(Tree tree) {
@@ -19,17 +18,11 @@ public class Model {
 
 
     public void sortMax(){
-        if (heapSort != null){
-            heapSort = null;
-        }
         heapSort = new HeapSortMax(tree);
         heapSort.run();
     }
 
     public void sortMin(){
-        if (heapSort != null){
-            heapSort = null;
-        }
         heapSort = new HeapSortMin(tree);
         heapSort.run();
     }

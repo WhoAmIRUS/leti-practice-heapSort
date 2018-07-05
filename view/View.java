@@ -1,5 +1,6 @@
 package com.etu.heapsort.view;
 
+import com.etu.heapsort.model.Model;
 import com.etu.heapsort.model.Tree;
 import com.etu.heapsort.model.Node;
 import com.etu.heapsort.swing.ProjectLauncher;
@@ -9,13 +10,26 @@ import java.util.ArrayList;
 public class View extends Thread{
 
     private Graphics graphics;
+    public static boolean isAutomaticSort = false;
+
+    public void run(){
+        draw(Model.getListOfTrees());
+    }
 
     public synchronized void draw(ArrayList<Tree> ListOfTrees){
         for (int i=0; i<ListOfTrees.size(); i++){
+            ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
             drawTree(ListOfTrees.get(i).getTree());
             changeExplain(ListOfTrees.get(i).getExplain());
-            checkedWait();
+            if (!isAutomaticSort) checkedWait();
+            else{
+                i = ListOfTrees.size() - 1;
+                ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
+                drawTree(ListOfTrees.get(i).getTree());
+                changeExplain(ListOfTrees.get(i).getExplain());
+            }
         }
+        Model.clearListOfTrees();
     }
     private void drawTree(Node[] tree) {
         for (int i = 0; i < tree.length; i++) {
@@ -40,17 +54,13 @@ public class View extends Thread{
 
     void checkedWait(){
         try {
-            //if (!isAutomaticSort) {
-                wait();
-            //} else {
-                //Thread.sleep(300);
-            //}
+             wait();
         } catch (InterruptedException e){
             System.out.println("Error");
         }
     }
 
-    public void nextStep(){
+    public synchronized void nextStep(){
         notifyAll();
     }
 }

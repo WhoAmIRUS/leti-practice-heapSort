@@ -18,7 +18,6 @@ abstract class HeapSort{
         this.tree = sort(tree);
         answer = "";
         for(Node e: tree.getTree()){
-            System.out.println(e.getValue());
             answer = answer + " " + e.getValue();
         }
         this.tree.setExplain(answer);

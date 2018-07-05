@@ -1,12 +1,13 @@
 package com.etu.heapsort.controller;
 
 import com.etu.heapsort.model.Model;
+import com.etu.heapsort.swing.SwingGraphicsAdapter;
 import com.etu.heapsort.view.View;
 import com.etu.heapsort.swing.ProjectLauncher;
 
-public class Controller {
+public class Controller{
     private Model model;
-    private final View view;
+    private View view;
 
     public Controller(Model model, View view){
         this.model = model;
@@ -18,7 +19,7 @@ public class Controller {
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
         model.sortMax();
-        draw();
+        restartView();
     }
 
     public void sortMin(){
@@ -26,26 +27,15 @@ public class Controller {
             this.model = model.reedFromTextField(ProjectLauncher.getControls().getTextField().getText());
         }
         model.sortMin();
-        draw();
+        restartView();
     }
 
     public void nextStep(){
-        view.nextStep();
-        draw();
-    }
-
-    public void draw(){
-        ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
-        view.draw(Model.getListOfTrees());
-    }
-
-    public void refresh(){
-        ProjectLauncher.initScanner();
-        //view.draw(model.getTree());
+        this.view.nextStep();
     }
 
     public void automaticSort(){
-        Model.isAutomaticSort = !Model.isAutomaticSort;
+        View.isAutomaticSort = !View.isAutomaticSort;
     }
 
     public Model getModel() {
@@ -54,5 +44,12 @@ public class Controller {
 
     public static void changeAnswer(String answer){
         ProjectLauncher.getControls().getLabel().setText("Answer: " + answer);
+    }
+
+    private void restartView(){
+        if (this.view.isAlive()) this.view = null;
+        this.view = new View();
+        this.view.setGraphics(new SwingGraphicsAdapter(ProjectLauncher.getCanvas().getGraphics()));
+        this.view.start();
     }
 }

@@ -6,11 +6,9 @@ import java.awt.*;
 
 public class SwingGraphicsAdapter implements Graphics{
 
-    private final JFrame mainFrame;
     private final java.awt.Graphics graphics;
 
-    public SwingGraphicsAdapter(JFrame mainFrame, java.awt.Graphics graphics) {
-        this.mainFrame = mainFrame;
+    public SwingGraphicsAdapter(java.awt.Graphics graphics) {
         this.graphics = graphics;
     }
 
