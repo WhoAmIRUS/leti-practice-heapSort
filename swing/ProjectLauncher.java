@@ -7,14 +7,14 @@ import heapsort.view.View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProjectLauncher extends JFrame {
 
-    private static Scanner scanner;
-    private static BufferedReader br;
+    //private static Scanner scanner;
     private static final Component canvas = new JPanel();
     private static final ControlPanel controls = new ControlPanel();
     private static final ProgressBar progressBar = new ProgressBar();
@@ -24,12 +24,11 @@ public class ProjectLauncher extends JFrame {
         SwingUtilities.invokeLater(() -> new ProjectLauncher().setVisible(true));
     }
 
-    public static void initScanner(){
-        try {
-            br = new BufferedReader(new FileReader("./../input.dat"));
-        } catch (Exception e){
-
-        }
+    public void initScanner() throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("input.txt").getFile());
+        //scanner = new Scanner(file);
+        //scanner = new Scanner(ProjectLauncher.class.getResourceAsStream("../../input.txt"));
     }
 
     /**
@@ -39,6 +38,7 @@ public class ProjectLauncher extends JFrame {
         canvas.setPreferredSize(new Dimension(900, 600));
         controls.setPreferredSize(new Dimension(900, 80));
         progressBar.setPreferredSize(new Dimension(900, 50));
+        progressBar.setGraphics(new SwingGraphicsAdapter(canvas.getGraphics()));
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
@@ -60,17 +60,16 @@ public class ProjectLauncher extends JFrame {
      */
     private void initListeners() {
         ArrayList<Integer> buffer = new ArrayList<>();
-        /*try{
-            initScanner();
-            int line = Integer.parseInt(br.readLine());
-            while(line != 0){
-                buffer.add(line);
-                line = Integer.parseInt(br.readLine());
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("input.txt").getFile());
+        try(Scanner scanner = new Scanner(file)){
+            while (scanner.hasNextInt()) {
+                buffer.add(scanner.nextInt());
             }
         } catch (Exception e){
-
-        }*/
-        buffer.add(0);
+            buffer.add(0);
+            buffer.add(1);
+        }
         Model model = Model.restore(buffer);
         View view = new View();
         view.setGraphics(new SwingGraphicsAdapter(canvas.getGraphics()));

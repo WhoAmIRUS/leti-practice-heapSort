@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Model {
     private HeapSort heapSort;
     private Tree tree;
-    private static ArrayList<Tree> ListOfTrees = new ArrayList<Tree>();
+    private static ArrayList<Tree> ListOfTrees = new ArrayList<>();
 
     private Model(Tree tree) {
         this.tree = tree;
@@ -45,5 +45,9 @@ public class Model {
 
     public static ArrayList<Tree> getListOfTrees() {
         return ListOfTrees;
+    }
+
+    public Tree getTree() {
+        return tree;
     }
 }

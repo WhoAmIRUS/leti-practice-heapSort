@@ -13,11 +13,12 @@ public class View extends Thread{
     private Graphics graphics;
     public static boolean isAutomaticSort = false;
     private int currentSlide;
+    private boolean flag = false;
 
     public void run(){
         draw(Model.getListOfTrees());
     }
-
+    //выходит из цикла, по этому нельзя назад нажать
     public synchronized void draw(ArrayList<Tree> ListOfTrees){
         ProjectLauncher.getProgressBar().setCountOfSlides(ListOfTrees.size());
         for (currentSlide=0; currentSlide<ListOfTrees.size(); currentSlide++){
@@ -28,6 +29,7 @@ public class View extends Thread{
             if (!isAutomaticSort) checkedWait();
             else{
                 currentSlide = ListOfTrees.size() - 1;
+                //flag = true;
                 ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
                 drawTree(ListOfTrees.get(currentSlide).getTree());
                 changeExplain(ListOfTrees.get(currentSlide).getExplain());
@@ -58,6 +60,10 @@ public class View extends Thread{
 
     private static void changeExplain(String explain){
         ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
+    }
+
+    public Graphics getGraphics() {
+        return graphics;
     }
 
     public void setGraphics(Graphics graphics) {
