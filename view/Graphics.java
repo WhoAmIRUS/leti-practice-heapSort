@@ -1,4 +1,4 @@
-package view;
+package heapsort.view;
 
 public interface Graphics {
     void drawOval(int x, int y, int width, int height, int rgb);

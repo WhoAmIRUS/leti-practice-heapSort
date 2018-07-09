@@ -1,4 +1,4 @@
-package model;
+package heapsort.model;
 
 import java.util.ArrayList;
 
@@ -28,9 +28,12 @@ public class Model {
     }
 
     public Model reedFromTextField(String text){
-        ArrayList<Integer> list = new ArrayList<>();
-        for (String i : text.split(" ")){
-            list.add(Integer.parseInt(i));
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int size = Integer.parseInt(text);
+        int a = 0;
+        int b = 1000;
+        for (int i = 0; i < size; ++i){
+            list.add(a + (int)(Math.random()*b));
         }
         return restore(list);
     }
@@ -45,5 +48,9 @@ public class Model {
 
     public static ArrayList<Tree> getListOfTrees() {
         return ListOfTrees;
+    }
+
+    public Tree getTree() {
+        return tree;
     }
 }

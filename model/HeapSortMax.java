@@ -1,8 +1,4 @@
-package model;
-
-import controller.Controller;
-
-import com.etu.heapsort.controller.Controller;
+package heapsort.model;
 
 public class HeapSortMax extends HeapSort {
 

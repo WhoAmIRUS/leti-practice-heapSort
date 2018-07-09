@@ -1,4 +1,4 @@
-package model;
+package heapsort.model;
 
 public class Point {
     private int x;

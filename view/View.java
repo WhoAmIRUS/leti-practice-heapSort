@@ -1,10 +1,10 @@
-package view;
+package heapsort.view;
 
 import java.awt.*;
-import com.etu.heapsort.model.Model;
-import com.etu.heapsort.model.Tree;
-import com.etu.heapsort.model.Node;
-import com.etu.heapsort.swing.ProjectLauncher;
+import heapsort.model.Model;
+import heapsort.model.Tree;
+import heapsort.model.Node;
+import heapsort.swing.ProjectLauncher;
 
 import java.util.ArrayList;
 
@@ -12,34 +12,42 @@ public class View extends Thread{
 
     private Graphics graphics;
     public static boolean isAutomaticSort = false;
+    private int currentSlide;
+    private boolean flag = false;
 
     public void run(){
         draw(Model.getListOfTrees());
     }
-
+    //выходит из цикла, по этому нельзя назад нажать
     public synchronized void draw(ArrayList<Tree> ListOfTrees){
         ProjectLauncher.getProgressBar().setCountOfSlides(ListOfTrees.size());
-        for (int i=0; i<ListOfTrees.size(); i++){
+        for (currentSlide=0; currentSlide<ListOfTrees.size(); currentSlide++){
             ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
-            drawTree(ListOfTrees.get(i).getTree());
-            changeExplain(ListOfTrees.get(i).getExplain());
+            drawTree(ListOfTrees.get(currentSlide).getTree());
+            changeExplain(ListOfTrees.get(currentSlide).getExplain());
             ProjectLauncher.getProgressBar().increaseCurrentSlide();
             if (!isAutomaticSort) checkedWait();
             else{
-                i = ListOfTrees.size() - 1;
+                currentSlide = ListOfTrees.size() - 1;
+                //flag = true;
                 ProjectLauncher.getCanvas().update(ProjectLauncher.getCanvas().getGraphics());
-                drawTree(ListOfTrees.get(i).getTree());
-                changeExplain(ListOfTrees.get(i).getExplain());
-                ProjectLauncher.getProgressBar().setCurrentSlide(i + 1);
+                drawTree(ListOfTrees.get(currentSlide).getTree());
+                changeExplain(ListOfTrees.get(currentSlide).getExplain());
+                ProjectLauncher.getProgressBar().setCurrentSlide(currentSlide + 1);
             }
         }
-        Model.clearListOfTrees();
     }
     private void drawTree(Node[] tree) {
         for (int i = 0; i < tree.length; i++) {
             int x = tree[i].getPosition().getX();
             int y = tree[i].getPosition().getY();
             Color oval;
+            int centr = tree[i].getValue();
+            int step = 0;
+            while (centr > 0){
+                centr /= 10;
+                step++;
+            }
             if (tree[i].getClr()){
                 oval = Color.red;
             } else {
@@ -52,19 +60,23 @@ public class View extends Thread{
                 graphics.drawLine(x, y,tree[2*i + 2].getPosition().getX(),tree[2*i + 2].getPosition().getY(), Color.black.getRGB());
             }
             graphics.drawOval(x - 15, y - 15, 30, 30, oval.getRGB());
-            graphics.drawText(x - 3, y + 4, String.valueOf(tree[i].getValue()), Color.black.getRGB());           
+            graphics.drawText(x - 4*step, y + 4, String.valueOf(tree[i].getValue()), Color.black.getRGB());
         }
     }
 
-    public static void changeExplain(String explain){
+    private static void changeExplain(String explain){
         ProjectLauncher.getControls().getLabel().setText("Explain: " + explain);
+    }
+
+    public Graphics getGraphics() {
+        return graphics;
     }
 
     public void setGraphics(Graphics graphics) {
         this.graphics = graphics;
     }
 
-    void checkedWait(){
+    private void checkedWait(){
         try {
              wait();
         } catch (InterruptedException e){
@@ -73,6 +85,11 @@ public class View extends Thread{
     }
 
     public synchronized void previousStep(){
+        if (currentSlide - 1 >= 0){
+            currentSlide -= 2;
+            ProjectLauncher.getProgressBar().setCurrentSlide(currentSlide + 1);
+            notifyAll();
+        }
     }
     public synchronized void nextStep(){
         notifyAll();
