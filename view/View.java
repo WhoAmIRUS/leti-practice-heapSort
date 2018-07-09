@@ -42,6 +42,12 @@ public class View extends Thread{
             int x = tree[i].getPosition().getX();
             int y = tree[i].getPosition().getY();
             Color oval;
+            int centr = tree[i].getValue();
+            int step = 0;
+            while (centr > 0){
+                centr /= 10;
+                step++;
+            }
             if (tree[i].getClr()){
                 oval = Color.red;
             } else {
@@ -54,7 +60,7 @@ public class View extends Thread{
                 graphics.drawLine(x, y,tree[2*i + 2].getPosition().getX(),tree[2*i + 2].getPosition().getY(), Color.black.getRGB());
             }
             graphics.drawOval(x - 15, y - 15, 30, 30, oval.getRGB());
-            graphics.drawText(x - 3, y + 4, String.valueOf(tree[i].getValue()), Color.black.getRGB());           
+            graphics.drawText(x - 4*step, y + 4, String.valueOf(tree[i].getValue()), Color.black.getRGB());
         }
     }
 

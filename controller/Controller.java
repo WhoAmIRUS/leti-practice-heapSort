@@ -14,8 +14,11 @@ public class Controller{
         this.view = view;
     }
 
-    public void sortMax(){
+    public void generate(){
         checkTextField();
+    }
+
+    public void sortMax(){
         Model.clearListOfTrees();
         ProjectLauncher.getProgressBar().clear();
         model.sortMax();
@@ -23,7 +26,6 @@ public class Controller{
     }
 
     public void sortMin(){
-        checkTextField();
         Model.clearListOfTrees();
         ProjectLauncher.getProgressBar().clear();
         model.sortMin();

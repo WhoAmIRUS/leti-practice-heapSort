@@ -29,8 +29,11 @@ public class Model {
 
     public Model reedFromTextField(String text){
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (String i : text.split(" ")){
-            list.add(Integer.parseInt(i));
+        int size = Integer.parseInt(text);
+        int a = 0;
+        int b = 1000;
+        for (int i = 0; i < size; ++i){
+            list.add(a + (int)(Math.random()*b));
         }
         return restore(list);
     }

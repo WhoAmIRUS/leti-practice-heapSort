@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class ControlPanel extends JPanel {
-    private final JLabel enter = createLabel("Enter array:", 0, 10, 190,30);
-    private final JTextField textField = createTextField("", 0, 10, 190, 30);
+    private final JLabel enter = createLabel("Size:", 0, 10, 40,30);
+    private final JTextField textField = createTextField("", 40, 10, 20, 30);
+    private final JButton generate = createButton("Generate",60,10,40,30);
     private final JButton sortMax = createButton("sort from min to max", 60, 10, 190, 30);
     private final JButton sortMin = createButton("sort from max to min", 250, 10, 190, 30);
     private final JButton previousStep = createButton("previous",350,10, 50,30);
@@ -16,12 +17,17 @@ public class ControlPanel extends JPanel {
     ControlPanel() {
         add(enter);
         add(textField);
+        add(generate);
         add(sortMax);
         add(sortMin);
         add(previousStep);
         add(nextStep);
         add(checkBox);
         add(answer);
+    }
+
+    void addGenerateButtonListener(ActionListener listener){
+        generate.addActionListener(listener);
     }
 
     void addSortMaxButtonListener(ActionListener listener){
@@ -55,7 +61,7 @@ public class ControlPanel extends JPanel {
     }
 
     private JTextField createTextField(String text, int x, int y, int width, int height){
-        JTextField textField = new JTextField(text, 20);
+        JTextField textField = new JTextField(text, 4);
         textField.setBounds(x, y, width, height);
         return textField;
     }
